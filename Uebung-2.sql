@@ -181,3 +181,84 @@ where
 	v_kunden_id  = k_id 
 group by cube(k_name, o_filiale)
 having sum(v_anzahl*p_verkaufspreis) >= 100;
+
+/*
+ * ROLL-UP
+ */
+select * from Ort;
+select * from Kunde ;
+select * from Produkt;
+select * from zeit ;
+select * from verkauf;
+
+/*
+ * der Umsatz für die Dimensionselemente Produktkategorie und Produktgruppe
+ */
+select 
+	p_produktgruppe, 
+	p_produktkategorie,
+	sum(v_anzahl*p_verkaufspreis) as umsatz
+from
+	verkauf v ,
+	zeit z ,
+	produkt p ,
+	ort o, 
+	kunde k
+where
+	v_zeit_id = z_id and 
+	v_produkt_id = p_id and 
+	v_ort_id = o_id and
+	v_kunden_id  = k_id 
+group by rollup(
+	p_produktgruppe,
+	p_produktkategorie);
+
+/*
+ * der Umsatz mit Hilfe von ROLLUP über die Dimensionen Produkt und Zeit
+ */
+
+select 
+	p_produktgruppe, 
+	p_produktkategorie, 
+	extract(month from z_datum) as monat,
+	extract(year from z_datum) as year,
+	sum(v_anzahl*p_verkaufspreis) as umsatz
+from
+	verkauf v ,
+	zeit z ,
+	produkt p ,
+	ort o, 
+	kunde k
+where
+	v_zeit_id = z_id and 
+	v_produkt_id = p_id and 
+	v_ort_id = o_id and
+	v_kunden_id  = k_id 
+group by rollup(
+	p_produktgruppe,
+	p_produktkategorie,
+	extract(month from z_datum),
+	extract(year from z_datum));
+	
+select 
+	p_produktgruppe, 
+	p_produktkategorie, 
+	extract(month from z_datum) as monat,
+	extract(year from z_datum) as year,
+	sum(v_anzahl*p_verkaufspreis) as umsatz
+from
+	verkauf v ,
+	zeit z ,
+	produkt p ,
+	ort o, 
+	kunde k
+where
+	v_zeit_id = z_id and 
+	v_produkt_id = p_id and 
+	v_ort_id = o_id and
+	v_kunden_id  = k_id 
+group by cube(
+	p_produktgruppe,
+	p_produktkategorie,
+	extract(month from z_datum),
+	extract(year from z_datum));
