@@ -67,7 +67,16 @@ create table p_produkt (
 	p_produktgruppe varchar(30),
 	p_produktkategorie varchar(30)
 );
-insert into p_produkt ( P_ID,P_Bezeichnung,P_Verkaufspreis,P_Rabatt,P_Einkaufspreis,P_Steuern,P_Produktgruppe,P_Produktkategorie) values (250,'fohrenburger premium weizen',0.3,0,0.25,19.0,'bier','getränke' );
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1001, 'Motor VW', 'drehstrommotor','generator');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1002, 'Motor BMW', 'gleichstrom','elektromotor');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1003, 'Motor Opel', 'gleichstrom','elektromotor');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1004, 'Motor ABB', 'drehstrommotor','generator');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1005, 'Motor Merc', 'gleichstrom','elektromotor');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1006, 'Motor Ford', 'drehstrommotor','generator');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1007, 'Motor Toyota', 'gleichstrom','elektromotor');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1008, 'Motor Honda', 'drehstrommotor','generator');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1009, 'Motor Audi', 'drehstrommotor','generator');
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1010, 'Motor GM', 'gleichstrom','elektromotor');
 
 
 /*
