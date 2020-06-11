@@ -5,6 +5,7 @@ drop table p_produkt;
 drop table p_auftrag;
 drop table p_dwh-fakt;
 */
+select * from produkt p;
 
 create table p_zeit (
 	z_id int primary key,
@@ -22,7 +23,7 @@ create table p_material(
 );
 
 create table p_produkt (
-	p_id primary key,
+	p_id int primary key,
 	p_name varchar(30) not null,
 	p_produktgruppe varchar(30),
 	p_produktkategorie varchar(30)
@@ -38,15 +39,6 @@ create table p_auftrag (
 	a_auftragskategorie varchar(30)
 	
 );
-create table Verkauf (
-     V_Anzahl integer not null,
-     V_Kanal char(1) not null, -- l für laden, k für katalog, w für web, ....
-     V_Produkt_ID int references Produkt(P_ID),
-     V_Zeit_ID int references zeit(Z_ID),
-     V_Kunden_ID int references Kunde(K_ID),
-     V_Ort_ID int references Ort(O_ID),
-     primary key (V_Produkt_ID, V_Zeit_ID, V_Kunden_ID, V_Ort_ID)
-);
 create table dwh_fakt (
 	d_material_anzahl integer,
 	d_arbeitsschritte integer,
@@ -57,28 +49,36 @@ create table dwh_fakt (
 	d_auftrag_id int references p_auftrag(a_id),
 	primary key (d_zeit_id,d_material_id,d_produkt_id,d_auftrag_id)
 );
+create table p_material(
+	m_id int primary key,
+	m_bezeichnung varchar(30) not null,
+	m_kosten numeric (5,2) not null,
+	m_lieferant varchar(30) not null,
+	m_lieferant_filiale varchar(30) not null,
+	m_lieferant_stadt varchar(30),
+	m_lieferant_bundesland varchar(30)
+);
+/*
+* P_MATERIAL
+*/
+insert into p_material (m_id, m_bezeichnung, m_kosten, m_lieferant, m_lieferant_filiale, m_lieferant_stadt,m_lieferant_bundesland ) values 
+	
 
 /*
  * P_PRODUKT
  */
-create table p_produkt (
-	p_id primary key,
-	p_name varchar(30) not null,
-	p_produktgruppe varchar(30),
-	p_produktkategorie varchar(30)
-);
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1001, 'Motor VW', 'drehstrommotor','generator');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1002, 'Motor BMW', 'gleichstrom','elektromotor');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1003, 'Motor Opel', 'gleichstrom','elektromotor');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1004, 'Motor ABB', 'drehstrommotor','generator');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1005, 'Motor Merc', 'gleichstrom','elektromotor');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1006, 'Motor Ford', 'drehstrommotor','generator');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1007, 'Motor Toyota', 'gleichstrom','elektromotor');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1008, 'Motor Honda', 'drehstrommotor','generator');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1009, 'Motor Audi', 'drehstrommotor','generator');
-insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values (1010, 'Motor GM', 'gleichstrom','elektromotor');
 
-
+insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values 
+ (1001, 'Motor VW', 'drehstrommotor','generator'),
+ (1002, 'Motor BMW', 'gleichstrom','elektromotor'),
+ (1003, 'Motor Opel', 'gleichstrom','elektromotor'),
+ (1004, 'Motor ABB', 'drehstrommotor','generator'),
+ (1005, 'Motor Merc', 'gleichstrom','elektromotor'),
+ (1006, 'Motor Ford', 'drehstrommotor','generator'),
+ (1007, 'Motor Toyota', 'gleichstrom','elektromotor'),
+ (1008, 'Motor Honda', 'drehstrommotor','generator'),
+ (1009, 'Motor Audi', 'drehstrommotor','generator'),
+ (1010, 'Motor GM', 'gleichstrom','elektromotor');
 /*
  * P_ZEIT
  */
