@@ -61,7 +61,17 @@ create table p_material(
 /*
 * P_MATERIAL
 */
-insert into p_material (m_id, m_bezeichnung, m_kosten, m_lieferant, m_lieferant_filiale, m_lieferant_stadt,m_lieferant_bundesland ) values 
+insert into p_material (m_id, m_bezeichnung, m_kosten, m_lieferant, m_lieferant_filiale, m_lieferant_stadt,m_lieferant_bundesland) values 
+	(2101,"reife",100.29,"könig","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2102,"reife",230,"michelin","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2201,"wasserpumpe",790,"Volvo","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2301,"thermostat",250,"Astra","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2302,"thermostat",400,"Avia","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2401,"Keilrippenriemen",2300,"BMW","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2402,"Keilrippenriemen",2500,"MERC","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2501,"Luftfilter",500,"NISSAN","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2502,"Luftfilter",700,"FORD","Michi Autowerkzeug", "Eisenach","Thüringen"),
+
 	
 
 /*
