@@ -49,15 +49,7 @@ create table dwh_fakt (
 	d_auftrag_id int references p_auftrag(a_id),
 	primary key (d_zeit_id,d_material_id,d_produkt_id,d_auftrag_id)
 );
-create table p_material(
-	m_id int primary key,
-	m_bezeichnung varchar(30) not null,
-	m_kosten numeric (5,2) not null,
-	m_lieferant varchar(30) not null,
-	m_lieferant_filiale varchar(30) not null,
-	m_lieferant_stadt varchar(30),
-	m_lieferant_bundesland varchar(30)
-);
+
 /*
 * P_MATERIAL
 */
@@ -110,7 +102,17 @@ insert into p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values
  (1007, 'Motor Toyota', 'gleichstrom','elektromotor'),
  (1008, 'Motor Honda', 'drehstrommotor','generator'),
  (1009, 'Motor Audi', 'drehstrommotor','generator'),
- (1010, 'Motor GM', 'gleichstrom','elektromotor');
+ (1010, 'Motor GM', 'gleichstrom','elektromotor'),
+ (1011, 'Motor Audi BVY', 'gleichstrom','elektromotor'),
+ (1012, 'Motor BMW N63', 'drehstrommotor','generator'),
+ (1013, 'Motor Ford M1DA', 'drehstrommotor','generator'),
+ (1014, 'Motor Mercedes 276', 'gleichstrom','elektromotor'),
+ (1015, 'Motor Lexus RX', 'gleichstrom','elektromotor'),
+ (1016, 'Motor VW Transporter', 'gleichstrom','elektromotor'),
+ (1017, 'Motor Porsche Boxster', 'drehstrommotor','generator'),
+ (1018, 'Motor VW Passat', 'drehstrommotor','generator'),
+ (1019, 'Motor Audi A6', 'gleichstrom','elektromotor'),
+ (1020, 'Motor Jaguar F-Pace', 'gleichstrom','elektromotor');
 /*
  * P_ZEIT
  */
