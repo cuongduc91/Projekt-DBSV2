@@ -57,13 +57,15 @@ create table p_auftrag (
 	a_fertigsstellung_zeit date not null,
 	a_angebotspreis numeric (6,2),
 	a_kunde_name varchar(30) not null,
+	a_kunde_handy numeric(8),
 	a_auftragsart varchar(30),
-	a_auftragskategorie varchar(30)
+	a_auftragskategorie varchar(30),
+	unique(a_kunde_handy)
 );
 
 /*P_AUFTRAG*/
 insert into p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_angebotspreis, a_kunde_name, a_auftragsart, a_auftragskategorie) values 
-(3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong","Kontrolle","Service"),
+(3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong",12345678,"Kontrolle","Service"),
 /*
 * P_MATERIAL
 */
