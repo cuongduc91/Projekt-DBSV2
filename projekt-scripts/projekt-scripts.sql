@@ -71,9 +71,31 @@ insert into p_material (m_id, m_bezeichnung, m_kosten, m_lieferant, m_lieferant_
 	(2402,"Keilrippenriemen",2500,"MERC","Michi Autowerkzeug", "Eisenach","Thüringen"),
 	(2501,"Luftfilter",500,"NISSAN","Michi Autowerkzeug", "Eisenach","Thüringen"),
 	(2502,"Luftfilter",700,"FORD","Michi Autowerkzeug", "Eisenach","Thüringen"),
-
-	
-
+	(2601,"Lenkungsdaempfer",234,"SACHS","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2602,"Lenkungsdaempfer",378,"KONI","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2603,"Lenkungsdaempfer",214.12,"FEBI","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2604,"Spurstangenkopf",16.6,"FEBI","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2605,"Spurstangenkopf",13.33,"SWAG","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2606,"Spurstangenkopf",6.75,"RIDEX","Michi Autowerkzeug", "Eisenach","Thüringen"), 
+	(2701,"Harnstofffilter",26.33,"MANN-FILTER","Die Werkstatt Erfurt", "Erfurt","Thüringen"),
+	(2702,"Harnstofffilter",22.46,"BOSCH","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2703,"Lambdasonde",90.1,"BOSCH","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2704,"Lambdasonde",32.3,"STARK","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2801,"Kuehlmitteltemperatur",16.66,"BOSCH","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2802,"Frostschutz",29.78,"VAICO","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2803,"Kupplung",675.23,"PRASCO","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2804,"Kupplung",112.07,"DT","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2805,"Kupplung",385.31,"AUGER","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2806,"Kupplung",195.87,"NRF","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2807,"Kupplung",67.23,"SWAG","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2901,"Gaszug",47,"SIEGEL","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2902,"Gaszug",86.63,"DT","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2903,"Gaszug",94.06,"DT","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2904,"Oelkuehler",9.18,"ELRING","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2904,"Oelkuehler",43.81,"NISSENS","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2905,"Oelkuehler",167.69,"MAHLE","Die Werkstatt Erfurt", "Erfurt""Thüringen"),
+	(2906,"Dichtungssatz",31.69,"GOETZE","Michi Autowerkzeug", "Eisenach","Thüringen"),
+	(2907,"Dichtungssatz",33.41,"PETERS","Die Werkstatt Erfurt", "Erfurt""Thüringen");
 /*
  * P_PRODUKT
  */
