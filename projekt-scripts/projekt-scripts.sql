@@ -6,12 +6,12 @@ drop table p_auftrag;
 drop table p_dwh-fakt;
 */
 select * from produkt p;
-
+-- Done
 create table p_zeit (
 	z_id int primary key,
 	z_datum date not null
 );
-
+-- Done
 create table p_material(
 	m_id int primary key,
 	m_bezeichnung varchar(30) not null,
@@ -21,7 +21,7 @@ create table p_material(
 	m_lieferant_stadt varchar(30),
 	m_lieferant_bundesland varchar(30)
 );
-
+-- Done
 create table p_produkt (
 	p_id int primary key,
 	p_name varchar(30) not null,
@@ -65,7 +65,25 @@ create table p_auftrag (
 
 /*P_AUFTRAG*/
 insert into p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_angebotspreis, a_kunde_name, a_auftragsart, a_auftragskategorie) values 
-(3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong",12345678,"Kontrolle","Service"),
+(3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong",10101010,"Kontrolle","Service"),
+(3002,date '2008-02-11', date '2008-02-15',1231.8, "Robert",10101011,"Wartung","Service"),
+(3003,date '2008-04-25', date '2008-04-25',198.0, "Manuel",10101111,"Bau","Produktion"),
+(3004,date '2008-04-12', date '2008-04-14',609.17, "Christian",10101110,"Bau","Produktion"),
+(3005,date '2008-05-10', date '2008-05-22',4250.0, "Christoph",10101000,"Bau","Produktion"),
+(3006,date '2008-05-17', date '2008-05-20',200.0, "Sandra",10111111,"Kontrolle","Service"),
+(3007,date '2008-05-30', date '2008-06-04',875.0, "Kristin",10111110,"Bau","Produktion"),
+(3008,date '2008-06-01', date '2008-06-07',425.0, "Anna",10111100,"Kontrolle","Service"),
+(3009,date '2008-06-03', date '2008-06-10',1020.0, "Lora",10111000,"Wartung","Service"),
+(3010,date '2008-06-10', date '2008-06-16',5020.0, "Kerstin",10111010,"Bau","Produktion"),
+(3011,date '2008-06-03', date '2008-06-10',100.15, "Adam",10111001,"Kontrolle","Service"),
+(3012,date '2008-06-14', date '2008-06-16',450.0, "Timo",10110101,"Bau","Produktion"),
+(3013,date '2008-06-28', date '2008-06-30',150.0, "Tim",10110111,"Wartung","Service"),
+(3014,date '2008-07-01', date '2008-07-05',320.0, "Mark",01010101,"Kontrolle","Service"),
+(3015,date '2008-07-05', date '2008-07-10',120.0, "Adam",01010111,"Wartung","Service"),
+(3016,date '2008-07-12', date '2008-07-20',3500.50, "Adam",01010110,"Bau","Produktion"),
+(3017,date '2008-07-20', date '2008-07-25',2700.60, "Adam",01010111,"Reparatur","Produktion"),
+(3018,date '2008-07-26', date '2008-07-29',600.4, "Adam",01011111,"Wartung","Service"),
+(3019,date '2008-07-31', date '2008-08-05',240.6, "Adam",01011110,"Kontrolle","Service"),
 /*
 * P_MATERIAL
 */
