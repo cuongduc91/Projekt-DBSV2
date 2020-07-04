@@ -39,35 +39,21 @@ create table p_auftrag (
 	a_auftragskategorie varchar(30)
 );
 create table dwh_fakt (
+	d_auftrag_id int references p_auftrag(a_id),
+	d_zeit_id int references p_zeit(z_id),
 	d_material_anzahl integer,
 	d_arbeitsschritte integer,
 	d_arbeitskosten numeric (6,2),
-	d_zeit_id int references p_zeit(z_id),
 	d_material_id int references p_material(m_id),
 	d_produkt_id int references p_produkt(p_id),
-	d_auftrag_id int references p_auftrag(a_id),
 	primary key (d_zeit_id,d_material_id,d_produkt_id,d_auftrag_id)
 );
 
-
-
-create table p_auftrag (
-	a_id int primary key,
-	a_auftragseingang_zeit date not null,
-	a_fertigsstellung_zeit date not null,
-	a_angebotspreis numeric (6,2),
-	a_kunde_name varchar(30) not null,
-	a_kunde_handy numeric(8),
-	a_auftragsart varchar(30),
-	a_auftragskategorie varchar(30),
-	unique(a_kunde_handy)
-);
-
-/*P_AUFTRAG*/
-insert into p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_angebotspreis, a_kunde_name, a_auftragsart, a_auftragskategorie) values 
-(3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong",10101010,"Kontrolle","Service"),
-(3002,date '2008-02-11', date '2008-02-15',1231.8, "Robert",10101011,"Wartung","Service"),
-(3003,date '2008-04-25', date '2008-04-25',198.0, "Manuel",10101111,"Bau","Produktion"),
+/* DWH-FAKT */ 
+insert into dwh_fakt (d_material_anzahl, d_arbeitsschritte,d_arbeitskosten,d_zeit_id,d_material_id,d_produkt_id,d_auftrag_id) values 
+(3001,22,4,4, 150.20,2101,1001),
+(3002,46,1,6,400.50,2502,1002),
+(3003,121,2,5,200,2302,1018),
 (3004,date '2008-04-12', date '2008-04-14',609.17, "Christian",10101110,"Bau","Produktion"),
 (3005,date '2008-05-10', date '2008-05-22',4250.0, "Christoph",10101000,"Bau","Produktion"),
 (3006,date '2008-05-17', date '2008-05-20',200.0, "Sandra",10111111,"Kontrolle","Service"),
@@ -85,6 +71,29 @@ insert into p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_ange
 (3018,date '2008-11-26', date '2008-11-29',600.4, "Eva",01011111,"Wartung","Service"),
 (3019,date '2008-07-31', date '2008-08-05',240.6, "Apple",01011110,"Kontrolle","Service"),
 (3020,date '2009-01-11', date '2009-01-13',720.8, "Kaka",10101210,"Kontrolle","Service"),
+/*P_AUFTRAG*/
+insert into p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_angebotspreis, a_kunde_name, a_auftragsart, a_auftragskategorie) values 
+(3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong",10101010,"Kontrolle","Service"),
+(3002,date '2008-02-11', date '2008-02-15',1231.8, "Robert",10101011,"Wartung","Service"),
+(3003,date '2008-04-25', date '2008-04-30',198.0, "Manuel",10101111,"Bau","Produktion"),
+(3004,date '2008-04-12', date '2008-04-14',609.17, "Christian",10101110,"Bau","Produktion"),
+(3005,date '2008-05-10', date '2008-05-22',4250.0, "Christoph",10101000,"Bau","Produktion"),
+(3006,date '2008-05-17', date '2008-05-20',200.0, "Sandra",10111111,"Kontrolle","Service"),
+(3007,date '2008-05-30', date '2008-06-04',875.0, "Kristin",10111110,"Bau","Produktion"),
+(3008,date '2008-06-01', date '2008-06-07',425.0, "Anna",10111100,"Kontrolle","Service"),
+(3009,date '2008-06-03', date '2008-06-10',1020.0, "Lora",10111000,"Wartung","Service"),
+(3010,date '2008-06-10', date '2008-06-16',5020.0, "Kerstin",10111010,"Bau","Produktion"),
+(3011,date '2008-06-03', date '2008-06-10',100.15, "Adam",10111001,"Kontrolle","Service"),
+(3012,date '2008-06-14', date '2008-06-16',450.0, "Timo",10110101,"Bau","Produktion"),
+(3013,date '2008-06-28', date '2008-06-30',150.0, "Tim",10110111,"Wartung","Service"),
+(3014,date '2008-07-01', date '2008-07-05',320.0, "Mark",01010101,"Kontrolle","Service"),
+(3015,date '2008-08-05', date '2008-08-10',120.0, "Torsten",01010111,"Wartung","Service"),
+(3016,date '2008-09-12', date '2008-09-20',3500.50, "Beegie",01010110,"Bau","Produktion"),
+(3017,date '2008-11-20', date '2008-11-25',2700.60, "Viet",01010111,"Reparatur","Produktion"),
+(3018,date '2008-11-26', date '2008-11-29',600.4, "Eva",01011111,"Wartung","Service"),
+(3019,date '2008-07-31', date '2008-08-05',240.6, "Apple",01011110,"Kontrolle","Service"),
+(3020,date '2009-01-11', date '2009-01-13',720.8, "Kaka",10101210,"Kontrolle","Service"),
+
 (3021,date '2009-02-11', date '2009-02-15',1231.8, "Bento",10121011,"Wartung","Service"),
 (3022,date '2009-04-25', date '2009-04-25',128.0, "Lily",10102111,"Bau","Produktion"),
 (3023,date '2009-04-12', date '2009-04-14',629.17, "Ben",20101110,"Bau","Produktion"),
