@@ -7,7 +7,7 @@ drop table p_dwh-fakt;
 */
 select * from produkt p;
 -- Done
-create table p_zeit (
+create table zeit (
 	z_id int primary key,
 	z_datum date not null
 );
@@ -40,7 +40,7 @@ create table p_auftrag (
 );
 create table dwh_fakt (
 	d_auftrag_id int references p_auftrag(a_id),
-	d_zeit_id int references p_zeit(z_id),
+	d_zeit_id int references zeit(z_id),
 	d_material_anzahl integer,
 	d_arbeitsschritte integer,
 	d_arbeitskosten numeric (6,2),
@@ -54,23 +54,23 @@ insert into dwh_fakt (d_material_anzahl, d_arbeitsschritte,d_arbeitskosten,d_zei
 (3001,22,4,4, 150.20,2101,1001),
 (3002,46,1,6,400.50,2502,1002),
 (3003,121,2,5,200,2302,1018),
-(3004,date '2008-04-12', date '2008-04-14',609.17, "Christian",10101110,"Bau","Produktion"),
-(3005,date '2008-05-10', date '2008-05-22',4250.0, "Christoph",10101000,"Bau","Produktion"),
-(3006,date '2008-05-17', date '2008-05-20',200.0, "Sandra",10111111,"Kontrolle","Service"),
-(3007,date '2008-05-30', date '2008-06-04',875.0, "Kristin",10111110,"Bau","Produktion"),
-(3008,date '2008-06-01', date '2008-06-07',425.0, "Anna",10111100,"Kontrolle","Service"),
-(3009,date '2008-06-03', date '2008-06-10',1020.0, "Lora",10111000,"Wartung","Service"),
-(3010,date '2008-06-10', date '2008-06-16',5020.0, "Kerstin",10111010,"Bau","Produktion"),
-(3011,date '2008-06-03', date '2008-06-10',100.15, "Adam",10111001,"Kontrolle","Service"),
-(3012,date '2008-06-14', date '2008-06-16',450.0, "Timo",10110101,"Bau","Produktion"),
-(3013,date '2008-06-28', date '2008-06-30',150.0, "Tim",10110111,"Wartung","Service"),
-(3014,date '2008-07-01', date '2008-07-05',320.0, "Mark",01010101,"Kontrolle","Service"),
-(3015,date '2008-08-05', date '2008-08-10',120.0, "Torsten",01010111,"Wartung","Service"),
-(3016,date '2008-09-12', date '2008-09-20',3500.50, "Beegie",01010110,"Bau","Produktion"),
-(3017,date '2008-11-20', date '2008-11-25',2700.60, "Viet",01010111,"Reparatur","Produktion"),
-(3018,date '2008-11-26', date '2008-11-29',600.4, "Eva",01011111,"Wartung","Service"),
-(3019,date '2008-07-31', date '2008-08-05',240.6, "Apple",01011110,"Kontrolle","Service"),
-(3020,date '2009-01-11', date '2009-01-13',720.8, "Kaka",10101210,"Kontrolle","Service"),
+(3004,150,1,8,525.50,2704,1012),
+(3005,143,1,8,600, 2703,1018), 
+(3006,142,0,3,100.50,2902,1007),
+(3007,156,1,6,400.50,2701,1008),
+(3008,159,0,4,120.50,2012,1010),
+(3009,162,1,3,120.50,2702,1003),
+(3010,168,1,12,860,2805,1020),
+(3011,162,0,5,190,2201,1013),
+(3012,168,1,7,450,2605,1014),
+(3013,182,0,4,140,2302,1015),
+(3014,187,2,8,500,2703,1017),
+(3015,223,0,4,155,2301,1006),
+(3016,264,2,8,658,2907,1020),
+(3017,330,1,10,850,2906,1011),
+(3018,334,3,14,1000,2302,1012),
+(3019,218,1,5,180.80,2401,1007),
+(3020,379,1,4,155,2402,1011),
 /*P_AUFTRAG*/
 insert into p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_angebotspreis, a_kunde_name, a_auftragsart, a_auftragskategorie) values 
 (3001,date '2008-01-11', date '2008-01-22',700.8, "Cuong",10101010,"Kontrolle","Service"),
