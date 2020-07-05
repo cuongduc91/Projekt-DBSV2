@@ -17,13 +17,30 @@ select * from dwh.dwh_fakt df where d_auftrag_id = 3043;
 Geben Sie den Namen des Kunden, die Auftragsnummer und die berechneten
 Arbeitskosten aus.
 */
-
+select 
+	a.a_id, a.a_kunde_name, (d.d_arbeitsschritte*d.d_arbeitskosten) as arbeitskosten
+from 
+	dwh.dwh_fakt d,
+	dwh.p_auftrag a
+where
+	a.a_id = d.d_auftrag_id;
+	
 
 /*
 3.Geben Sie Aufträge aus, deren Angebotspreis kleiner ist als der Peris für die geleistete
 Arbeit und die verwendeten Materialien. (D.h. Aufträge, die ein Verlust waren.)
 */
 
+select 
+	a.a_id, a.a_kunde_name, (d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten) as echterPreis,a.a_angebotspreis
+from 
+	dwh.dwh_fakt d,
+	dwh.p_auftrag a,
+	dwh.p_material m
+where
+	a.a_id = d.d_auftrag_id and 
+	m.m_id = d.d_material_id and 
+	(d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten) > a.a_angebotspreis;
 
 /*
 4.Geben Sie Entlang der Dimension Auftrag mit den Dimensionselementen

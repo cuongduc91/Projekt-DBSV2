@@ -38,7 +38,7 @@ create table dwh.p_auftrag (
 	a_fertigsstellung_zeit date not null,
 	a_angebotspreis numeric (6,2),
 	a_kunde_name varchar(30) not null,
-	a_kunde_id number,
+	a_kunde_id numeric,
 	a_auftragsart varchar(30),
 	a_auftragskategorie varchar(30)
 );
