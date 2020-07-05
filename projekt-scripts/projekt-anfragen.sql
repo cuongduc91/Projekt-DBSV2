@@ -43,11 +43,25 @@ where
 	(d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten) > a.a_angebotspreis;
 
 /*
-4.Geben Sie Entlang der Dimension Auftrag mit den Dimensionselementen
-Auftragskategorie und Auftragsart die Kosten für die Arbeitsleistung aus. D.h. Kosten für Wartung, Kontrolle, Reparatur, Bau jeweils einzeln, dann die Summen je
+4.Geben Sie Entlang der Dimension Auftrag mit den Dimensionselementen Auftragskategorie und Auftragsart die Kosten für die Arbeitsleistung aus. 
+D.h. Kosten für Wartung, Kontrolle, Reparatur, Bau jeweils einzeln, dann die Summen je
 Auftragskategorie (also Summe für Service und Produktion) und dann die
 Gesamtsumme über alle Aufträge.
 */
+select 
+	a.a_id, 
+	a.a_kunde_name,
+	a.a_auftragsart, 
+	a.a_auftragskategorie, 
+	(d.d_arbeitsschritte*d.d_arbeitskosten) as arbeitskosten ,
+	(d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten) as totalKosten
+from 
+	dwh.dwh_fakt d,
+	dwh.p_auftrag a,
+	dwh.p_material m
+where
+	a.a_id = d.d_auftrag_id and 
+	m.m_id = d.d_material_id;
 
 
 /*
