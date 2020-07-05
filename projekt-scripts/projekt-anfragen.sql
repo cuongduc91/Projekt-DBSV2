@@ -68,6 +68,25 @@ where
 5.Für die folgenden Anfragen können Sie eine Sicht definieren, um einfachere Select-
 Anweisungen erstellen zu können.
 */
+create view p_tagesumsatz as 
+	select 
+		a.a_auftragsart, 
+		a.a_auftragskategorie,
+		z.z_datum,
+		sum(a.a_angebotspreis) as umsatz
+	from 
+		dwh.p_auftrag a,
+		dwh.zeit z,
+		dwh.dwh_fakt d
+	where 
+		a.a_id = d.d_auftrag_id and 
+		z.z_id = d.d_zeit_id
+	group by 
+		a.a_auftragsart, 
+		a.a_auftragskategorie,
+		z.z_datum;
+
+select * from p_tagesumsatz;
 
 
 /*
