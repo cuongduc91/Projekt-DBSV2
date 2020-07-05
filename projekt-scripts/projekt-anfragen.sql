@@ -2,8 +2,16 @@
 1. Geben Sie für einen Auftrag den Namen des Kunden und alle Arbeitsschritte aus
 */
 
-/**/
+select
+	a.a_id, a.a_kunde_name, d.d_arbeitsschritte
+from
+  dwh.dwh_fakt d,
+  dwh.p_auftrag a
+where
+  	a.a_id = d.d_auftrag_id and 
+  	a.a_id = 3043;
 
+select * from dwh.dwh_fakt df where d_auftrag_id = 3043;
 /*
 2.Berechnen Sie die angefallenen Arbeitskosten pro Auftrag (ohne die Materialkosten).
 Geben Sie den Namen des Kunden, die Auftragsnummer und die berechneten
