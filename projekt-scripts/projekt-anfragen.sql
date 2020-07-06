@@ -194,4 +194,6 @@ from
 	from dwh.p_wartung_auftrag) taba;
 /*
 Könnte man materialisierte Sichten nutzen, um die Effizienz der Anfragen zu verbessern?
+
+Ant: Ja, da können die Sichten schnell fetchen und iterieren. 
 */
