@@ -54,7 +54,7 @@ select
 	a.a_auftragsart, 
 	a.a_auftragskategorie, 
 	(d.d_arbeitsschritte*d.d_arbeitskosten) as arbeitskosten ,
-	(d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten) as totalKosten
+	(d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten*d.d_material_anzahl ) as totalKosten
 from 
 	dwh.dwh_fakt d,
 	dwh.p_auftrag a,
@@ -68,26 +68,45 @@ where
 5.Für die folgenden Anfragen können Sie eine Sicht definieren, um einfachere Select-
 Anweisungen erstellen zu können.
 */
+drop view p_tagesumsatz;
 create view p_tagesumsatz as 
 	select 
+		a.a_id,
 		a.a_auftragsart, 
 		a.a_auftragskategorie,
 		z.z_datum,
+		(d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten*d.d_material_anzahl ) as totalKosten,
 		sum(a.a_angebotspreis) as umsatz
 	from 
 		dwh.p_auftrag a,
 		dwh.zeit z,
-		dwh.dwh_fakt d
+		dwh.dwh_fakt d,
+		dwh.p_material m
 	where 
 		a.a_id = d.d_auftrag_id and 
-		z.z_id = d.d_zeit_id
-	group by 
+		z.z_id = d.d_zeit_id and 
+		m.m_id = d.d_material_id
+	group by
+		a.a_id,
 		a.a_auftragsart, 
 		a.a_auftragskategorie,
+		totalKosten,
 		z.z_datum;
 
-select * from p_tagesumsatz;
+select * from p_tagesumsatz order by a_id;
 
+drop view p_umsatz_gewinn;
+create view p_umsatz_gewinn as 
+	select 
+		a_id,
+		a_auftragsart,
+		a_auftragskategorie,
+		z_datum,
+		totalkosten,
+		(umsatz - totalkosten) as gewinn,
+		umsatz
+	from p_tagesumsatz;
+select * from p_umsatz_gewinn order by a_id;
 
 /*
 6.Berechnen Sie für jeden Auftrag seinen Prozentualen Anteil am Gesamtumsatz im Jahr.
@@ -95,6 +114,35 @@ Der Gesamtumsatz soll sich aus den Kosten der Einzelnen Arbeitsschritte und den
 Kosten der verbauten Materialen berechnen.
 */
 
+--Prozentualen Anteil am Gesamtumsatz im Jahr mit der Dimesion Auftragskategorie
+select 
+	a_id,
+	a_auftragskategorie,
+	z_datum,
+	umsatz,
+	100*umsatz/sum(umsatz) over(partition by extract(year from z_datum), a_auftragskategorie) as jahr_anteil,
+	sum(umsatz) over(partition by extract(year from z_datum), a_auftragskategorie) as gesamt_umsatz
+from p_tagesumsatz order by a_id;
+--Prozentualen Anteil am Gesamtumsatz im Jahr
+select 
+	a_id,
+	a_auftragskategorie,
+	z_datum,
+	umsatz,
+	100*umsatz/sum(umsatz) over(partition by extract(year from z_datum)) as jahr_anteil,
+	sum(umsatz) over(partition by extract(year from z_datum)) as gesamt_umsatz
+from p_tagesumsatz
+order by a_id;
+--Prozentualen Anteil am Gesamtumsatz im Jahr bei Gewinn
+select 
+	a_id,
+	a_auftragskategorie,
+	z_datum,
+	umsatz,
+	100*gewinn/sum(umsatz) over(partition by extract(year from z_datum)) as jahr_anteil,
+	sum(umsatz) over(partition by extract(year from z_datum)) as gesamt_umsatz
+from p_umsatz_gewinn
+order by a_id;
 /*
 7.Geben Sie die Namen der 3 Kunden aus, die im laufenden Jahr den meisten Umsatz
 erzeugt haben.
