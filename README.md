@@ -6,7 +6,7 @@
 
 - **Cuong Bui Duc**
 
-## Docker
+## 🚀 Docker 🚀
 
 - Download and Install [Docker](https://www.docker.com)
 - Run the .yml file to build the containers as environment
@@ -16,7 +16,7 @@
 - Run docker in background
   `docker-compose up -d`
 
-## DBeaver
+## 🚀 DBeaver 🚀
 
 - Download and install [DBeaver](https://dbeaver.io) as GUI configuration to the PostgreSQL database
 - There is a button (+ 🔌) --> select MySQL.
