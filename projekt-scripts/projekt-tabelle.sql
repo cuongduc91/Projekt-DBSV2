@@ -4,11 +4,11 @@ drop schema if exists information_schema;
 
 create schema dwh;
 /*
-drop table p_dwh.zeit;
-drop table p_material;
-drop table p_produkt;
-drop table p_auftrag;
-drop table p_dwh-fakt;
+drop table dwh.zeit;
+drop table dwh.p_material;
+drop table dwh.p_produkt;
+drop table dwh.p_auftrag;
+drop table dwh.dwh-fakt;
 */
 create table dwh.zeit (
 	z_id int primary key,

@@ -2,12 +2,6 @@
 /*
  * P_ZEIT
  */
-drop table dwh.zeit cascade;
-
-create table dwh.zeit (
-	z_id int primary key,
-	z_datum date not null
-);
 
 insert into dwh.zeit (Z_ID,Z_Datum) values (1, date '2008-01-01');
 insert into dwh.zeit (Z_ID,Z_Datum) values (2, date '2008-01-02');
@@ -1107,20 +1101,8 @@ insert into dwh.zeit (Z_ID,Z_Datum) values (1095, date '2010-12-30');
 insert into dwh.zeit (Z_ID,Z_Datum) values (1096, date '2010-12-31');
 
 /*
- * P_AUFTRAG DONE
+ * P_AUFTRAG
  * */
-drop table dwh.p_auftrag cascade;
-
-create table dwh.p_auftrag (
-	a_id int primary key,
-	a_auftragseingang_zeit date not null,
-	a_fertigsstellung_zeit date not null,
-	a_angebotspreis numeric (6,2),
-	a_kunde_name varchar(30) not null,
-	a_kunde_id numeric,
-	a_auftragsart varchar(30),
-	a_auftragskategorie varchar(30)
-);
 
 insert into dwh.p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_angebotspreis, a_kunde_name,a_kunde_id, a_auftragsart, a_auftragskategorie) values 
 (3001,date '2008-01-11', date '2008-01-22',700.8, 'Cuong',10101010,'Kontrolle','Service'),
@@ -1181,7 +1163,7 @@ insert into dwh.p_auftrag (a_id,a_auftragseingang_zeit,a_fertigsstellung_zeit,a_
 (3057,date '2010-12-26', date '2010-12-29',540.4, 'Hacker',01034121,'Wartung','Service'),
 (3058,date '2010-07-31', date '2010-08-05',640.6, 'Jeff',01013420,'Kontrolle','Service');
 /*
-* P_MATERIAL DONE
+* P_MATERIAL
 */
 
 insert into dwh.p_material (m_id, m_bezeichnung, m_kosten, m_lieferant, m_lieferant_filiale, m_lieferant_stadt,m_lieferant_bundesland) values 
@@ -1220,17 +1202,8 @@ insert into dwh.p_material (m_id, m_bezeichnung, m_kosten, m_lieferant, m_liefer
 	(2907,'Dichtungssatz',31.69,'GOETZE','Michi Autowerkzeug', 'Eisenach','Thüringen'),
 	(2908,'Dichtungssatz',33.41,'PETERS','Die Werkstatt Erfurt', 'Erfurt','Thüringen');
 /*
- * P_PRODUKT DONE
+ * P_PRODUKT
  */
-drop table dwh.p_produkt cascade;
-create table dwh.p_produkt (
-	p_id int primary key,
-	p_name varchar(30) not null,
-	p_produktgruppe varchar(30),
-	p_produktkategorie varchar(30)
-);
-
-select * from dwh.p_produkt pp;
 
 insert into dwh.p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) values 
  (4001, 'Motor VW', 'drehstrommotor','generator'),
@@ -1255,18 +1228,6 @@ insert into dwh.p_produkt (p_id, p_name, p_produktgruppe, p_produktkategorie) va
  (4020, 'Motor Jaguar F-Pace', 'gleichstrom','elektromotor');
 
 /* DWH-FAKT */ 
-drop table dwh.dwh_fakt cascade;
-create table dwh.dwh_fakt (
-	d_auftrag_id int references dwh.p_auftrag(a_id),
-	d_zeit_id int references dwh.zeit(z_id),
-	d_material_anzahl integer,
-	d_arbeitsschritte integer,
-	d_arbeitskosten numeric (6,2),
-	d_material_id int references dwh.p_material(m_id),
-	d_produkt_id int references dwh.p_produkt(p_id),
-	primary key (d_auftrag_id,d_zeit_id,d_material_id,d_produkt_id)
-);
-
 
 insert into dwh.dwh_fakt (d_auftrag_id, d_zeit_id,d_material_anzahl,d_arbeitsschritte,d_arbeitskosten,d_material_id,d_produkt_id) values 
 (3001,22,4,4,45,2101,4001),
