@@ -68,8 +68,8 @@ where
 5.Für die folgenden Anfragen können Sie eine Sicht definieren, um einfachere Select-
 Anweisungen erstellen zu können.
 */
-drop view p_tagesumsatz;
-create view p_tagesumsatz as 
+drop view dwh.p_tagesumsatz cascade;
+create view dwh.p_tagesumsatz as 
 	select 
 		a.a_id,
 		a.a_auftragsart, 
@@ -93,10 +93,10 @@ create view p_tagesumsatz as
 		totalKosten,
 		z.z_datum;
 
-select * from p_tagesumsatz order by a_id;
+select * from dwh.p_tagesumsatz order by a_id;
 
-drop view p_umsatz_gewinn;
-create view p_umsatz_gewinn as 
+drop view dwh.p_umsatz_gewinn cascade;
+create view dwh.p_umsatz_gewinn as 
 	select 
 		a_id,
 		a_auftragsart,
@@ -105,8 +105,8 @@ create view p_umsatz_gewinn as
 		totalkosten,
 		(umsatz - totalkosten) as gewinn,
 		umsatz
-	from p_tagesumsatz;
-select * from p_umsatz_gewinn order by a_id;
+	from dwh.p_tagesumsatz;
+select * from dwh.p_umsatz_gewinn order by a_id;
 
 /*
 6.Berechnen Sie für jeden Auftrag seinen Prozentualen Anteil am Gesamtumsatz im Jahr.
@@ -122,7 +122,7 @@ select
 	umsatz,
 	100*umsatz/sum(umsatz) over(partition by extract(year from z_datum), a_auftragskategorie) as jahr_anteil,
 	sum(umsatz) over(partition by extract(year from z_datum), a_auftragskategorie) as gesamt_umsatz
-from p_tagesumsatz order by a_id;
+from dwh.p_tagesumsatz order by a_id;
 --Prozentualen Anteil am Gesamtumsatz im Jahr
 select 
 	a_id,
@@ -131,7 +131,7 @@ select
 	umsatz,
 	100*umsatz/sum(umsatz) over(partition by extract(year from z_datum)) as jahr_anteil,
 	sum(umsatz) over(partition by extract(year from z_datum)) as gesamt_umsatz
-from p_tagesumsatz
+from dwh.p_tagesumsatz
 order by a_id;
 --Prozentualen Anteil am Gesamtumsatz im Jahr bei Gewinn
 select 
@@ -141,12 +141,13 @@ select
 	umsatz,
 	100*gewinn/sum(umsatz) over(partition by extract(year from z_datum)) as jahr_anteil,
 	sum(umsatz) over(partition by extract(year from z_datum)) as gesamt_umsatz
-from p_umsatz_gewinn
+from dwh.p_umsatz_gewinn
 order by a_id;
 /*
 7.Geben Sie die Namen der 3 Kunden aus, die im laufenden Jahr den meisten Umsatz
 erzeugt haben.
 */
+
 
 /*
 8.Berechnen Sie den gleitenden Durchschnitt der Arbeitskosten für 5 Tage für die
