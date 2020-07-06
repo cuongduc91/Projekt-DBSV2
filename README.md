@@ -24,3 +24,8 @@
 - POSTGRES_USER=postgres
 - POSTGRES_USER=postgres
 - POSTGRES_PASSWORD=postgress
+
+## 🚀Script Execution
+
+- (1) projekt-tabelle.sql
+- (2) projekt-script.sql
