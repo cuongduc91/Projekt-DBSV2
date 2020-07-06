@@ -19,7 +19,7 @@
 ## 🚀 DBeaver
 
 - 💥Download and install [DBeaver](https://dbeaver.io) as GUI configuration to the PostgreSQL database
-- There is a button (+ 🔌) --> select MySQL.
+- There is a button (+ 🔌) --> select PostgreSQL.
 - Configuration with localhost:5433
 - POSTGRES_USER=postgres
 - POSTGRES_USER=postgres
