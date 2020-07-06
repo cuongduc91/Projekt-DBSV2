@@ -171,7 +171,27 @@ where
 Auftragsart „Wartung“.
 */
 
+drop view dwh.p_wartung_auftrag;
+create view dwh.p_wartung_auftrag as 
+	select 
+		cast(a.a_auftragseingang_zeit as DATE ) as eingang_date,
+		cast(a.a_fertigsstellung_zeit as DATE ) as ausgang_date,
+		(d.d_arbeitsschritte*d.d_arbeitskosten) as arbeitskosten
+	from 
+		dwh.dwh_fakt d,
+		dwh.p_auftrag a
+	where
+		a.a_id = d.d_auftrag_id and
+		a.a_auftragsart = 'Wartung';
+select * from dwh.p_wartung_auftrag;
 
+select 
+	(5* taba.sumArbeitskosten / taba.sumDauertTage) as Arbeitskosten_5_Tage
+from 
+	(select 
+		sum(arbeitskosten) as sumArbeitskosten,
+		sum(ausgang_date - eingang_date) as sumDauertTage
+	from dwh.p_wartung_auftrag) taba;
 /*
 Könnte man materialisierte Sichten nutzen, um die Effizienz der Anfragen zu verbessern?
 */
