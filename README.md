@@ -6,9 +6,9 @@
 
 - **Cuong Bui Duc**
 
-## 🚀 Docker 🚀
+## 🚀 Docker
 
-- Download and Install [Docker](https://www.docker.com)
+- 💥Download and Install [Docker](https://www.docker.com)
 - Run the .yml file to build the containers as environment
   `docker-compose build`
 - Run docker: `docker-compose up`
@@ -16,9 +16,9 @@
 - Run docker in background
   `docker-compose up -d`
 
-## 🚀 DBeaver 🚀
+## 🚀 DBeaver
 
-- Download and install [DBeaver](https://dbeaver.io) as GUI configuration to the PostgreSQL database
+- 💥Download and install [DBeaver](https://dbeaver.io) as GUI configuration to the PostgreSQL database
 - There is a button (+ 🔌) --> select MySQL.
 - Configuration with localhost:5433
 - POSTGRES_USER=postgres
