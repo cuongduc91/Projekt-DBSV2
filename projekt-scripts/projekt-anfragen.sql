@@ -148,6 +148,23 @@ order by a_id;
 erzeugt haben.
 */
 
+select 
+	a.a_id,
+	a.a_kunde_name,
+	b.umsatz,
+	b.jahr,
+	b.top_jahr
+from 
+	dwh.p_auftrag a,
+	(select
+		a_id,
+		extract(year from z_datum) as jahr,
+		umsatz,
+		rank() over(partition by extract(year from z_datum) order by umsatz desc) as top_jahr
+	from dwh.p_umsatz_gewinn) b
+where 
+	a.a_id = b.a_id and 
+	b.top_jahr <= 3;
 
 /*
 8.Berechnen Sie den gleitenden Durchschnitt der Arbeitskosten für 5 Tage für die
