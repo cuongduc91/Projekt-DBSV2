@@ -32,7 +32,7 @@ Arbeit und die verwendeten Materialien. (D.h. Aufträge, die ein Verlust waren.)
 */
 
 select 
-	a.a_id, a.a_kunde_name, (d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten) as echterPreis,a.a_angebotspreis
+	a.a_id, a.a_kunde_name, (d.d_arbeitsschritte*d.d_arbeitskosten + m.m_kosten*d.d_material_anzahl) as echterPreis,a.a_angebotspreis
 from 
 	dwh.dwh_fakt d,
 	dwh.p_auftrag a,
